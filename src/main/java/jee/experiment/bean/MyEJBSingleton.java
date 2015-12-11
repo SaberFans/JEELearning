@@ -7,9 +7,6 @@ import java.util.TimerTask;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.jms.JMSException;
 
@@ -19,7 +16,7 @@ import org.slf4j.LoggerFactory;
 @Singleton
 //@Startup
 public class MyEJBSingleton {
-	@Inject 
+	//@Inject 
 	Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	@EJB
 	SimpleSLB slb;

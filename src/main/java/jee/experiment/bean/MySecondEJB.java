@@ -23,10 +23,8 @@ import org.slf4j.LoggerFactory;
 
 @Singleton
 public class MySecondEJB {
-	@Inject
-	ServiceStatisticsBeanCDI bean;
 
-	@Inject
+	//@Inject
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Resource(mappedName = "java:/JmsXA")
