@@ -5,12 +5,12 @@ import java.util.logging.Logger;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import javax.jms.Topic;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -107,14 +107,25 @@ public class JMSClient {
 			Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			Queue destination = (Queue) context.lookup("jms/queue/test");
 			
+			Topic topic = (Topic) context.lookup("jms/topic/test");
+			System.out.println("Acquired jms topic"+ topic);
+			
 			System.out.println("Acquired jms queue: "+destination);
 			
-			MessageProducer producer = session.createProducer(destination);
+			// create msg
 			TextMessage mess = session.createTextMessage();
+
+			mess.setText("who are u?");
 			
-	        mess.setText("who are u?");
-	        producer.send(mess);
-	        System.out.println("Sent jms message:"+mess);
+			// send through topic
+			MessageProducer producerTopic = session.createProducer(topic);
+			producerTopic.send(mess);
+			
+			// send through queue
+			MessageProducer producerQueue = session.createProducer(destination);
+			
+			producerQueue.send(mess);
+
 	        
 	        
 		} catch (NamingException | JMSException e) {
