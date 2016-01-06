@@ -125,8 +125,6 @@ public class JMSClient {
 			MessageProducer producerQueue = session.createProducer(destination);
 			
 			producerQueue.send(mess);
-
-	        
 	        
 		} catch (NamingException | JMSException e) {
 			
