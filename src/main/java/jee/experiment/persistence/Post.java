@@ -1,5 +1,6 @@
 package jee.experiment.persistence;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,13 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.junit.Test;
 
 @Entity
 @Table(name="stackoverflowposts")
-public class Post {
+@NamedQuery(name = "queryAllPost", query = "select p from Post p")
+public class Post implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
