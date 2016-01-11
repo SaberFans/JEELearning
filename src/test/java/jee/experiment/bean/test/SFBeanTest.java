@@ -16,7 +16,7 @@ import org.junit.Test;
  */
 public class SFBeanTest {
 	private static final SimpleEJBClient client = new SimpleEJBClient();
-	private static final String sfsbName = "jee-web-project/SFBeanImpl!jee.experiment.sfsb.SFBeanBusinessRemote";
+	private static final String sfsbName = "jee-web-project/SFBeanImpl!"+SFBeanBusinessRemote.class.getName();
 	
 	@Test
 	public void sfbeanSessTest(){ 
